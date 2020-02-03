@@ -104,7 +104,10 @@ func (c *awsClient) TagUser(input *iam.TagUserInput) (*iam.TagUserOutput, error)
 // NewClient creates our client wrapper object for the actual AWS clients we use.
 func NewClient(accessKeyID, secretAccessKey []byte, infraName string) (Client, error) {
 	awsConfig := &awssdk.Config{}
-
+	region := "cn-north-1"
+	awsConfig.Region = &region
+	endpoint := "https://iam.amazonaws.com.cn"
+	awsConfig.Endpoint = &endpoint
 	awsConfig.Credentials = credentials.NewStaticCredentials(
 		string(accessKeyID), string(secretAccessKey), "")
 
